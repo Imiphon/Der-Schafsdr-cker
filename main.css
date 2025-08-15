@@ -1,0 +1,230 @@
+/* --- Spellbook look --- */
+/* Comments in English; chat stays German. */
+@font-face {
+  font-family: 'UnifrakturCook';
+  src: local('UnifrakturCook');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: local('EB Garamond');
+  font-display: swap;
+}
+
+:root {
+  --paper: #f5ecd7;
+  --ink: #3b2f1c;
+  --ink-soft: #5b4228;
+  --border: #a1865e;
+  --accent: #8b6b3f;
+  --shadow: rgba(0, 0, 0, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* Header | Main | Footer */
+  overflow: hidden;
+  /* App nie höher als Viewport */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+header,
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'UnifrakturCook', 'EB Garamond', Georgia, serif;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: 2.1rem;
+  margin: 24px 0 12px 0;
+  text-align: center;
+}
+
+#toc {
+  flex: 0 0 auto;
+}
+
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  columns: 2;
+  column-gap: 32px;
+}
+
+@media (max-width: 800px) {
+  #toc ol {
+    columns: 1;
+  }
+}
+
+#toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+#toc a:hover {
+  text-decoration: underline;
+}
+
+#book-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* erlaubt dem Kind (#book) zu schrumpfen/scrollen */
+}
+
+/* --- Single book page --- */
+#book {
+  margin-top: 16px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 580px;
+  margin: auto;
+}
+
+#book-pager {
+  margin-top: 12px;
+  flex: 0 0 auto;
+}
+
+.page {
+  background: rgba(255, 255, 255, 0.86);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 30px var(--shadow);
+  position: relative;
+  transform-style: preserve-3d;
+  height: var(--page-h, 60vh);
+  /* <— neu, JS setzt --page-h exakt */
+  overflow: auto;
+}
+
+.page h2 {
+  font-size: 1.55rem;
+  margin: 0.25rem 0 0.6rem 0;
+}
+
+.page h3 {
+  font-size: 1.15rem;
+  margin: 0.25rem 0 0.4rem 0;
+}
+
+.page p {
+  margin: 0.5rem 0;
+}
+
+/* Drop cap on first visible entry paragraph */
+.page .entry:first-child p:first-of-type::first-letter,
+.page .cont:first-child p:first-of-type::first-letter {
+  font-family: 'UnifrakturCook', 'EB Garamond', Georgia, serif;
+  font-size: 2.4rem;
+  float: left;
+  line-height: 1;
+  padding-right: 6px;
+  color: var(--accent);
+}
+
+/* --- Pager below the book --- */
+#book-pager {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+#book-pager a,
+#book-pager button {
+  color: var(--accent);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+#book-pager a:hover,
+#book-pager button:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--ink-soft);
+  opacity: 0.85;
+}
+
+/* --- Subtle page-turn animation --- */
+.page.turn {
+  animation: turn 420ms ease;
+}
+
+@keyframes turn {
+  0% {
+    transform: rotateY(8deg) translateY(6px);
+    opacity: 0.0;
+  }
+
+  100% {
+    transform: rotateY(0) translateY(0);
+    opacity: 1.0;
+  }
+}
+
+/* Helper classes for entry blocks */
+.entry {
+  margin-bottom: 0.8rem;
+}
+
+.entry a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.cont {
+  margin-bottom: 0.8rem;
+}
+
+/* continuation */
+
+@media (max-width: 640px) {
+
+  header,
+  main {
+    padding: 16px;
+  }
+}
