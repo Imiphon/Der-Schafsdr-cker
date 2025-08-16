@@ -1,8 +1,8 @@
 window.DATA = [
   {
-    id: "auszuge-aus-dem-schafsdrucker",
-    title: "Auszüge aus dem Schafsdrücker …",
-    body: `Im Folgenden einiges Wissenswertes über die Welt Ionoï, seine Bewohner und das Ganze drumherum, den Magier unter Einsatz ihrer Gesundheit (und mitunter auch ihres Lebens) dem berühmt berüchtigten Buch namens Schafsdrücker entreißen konnten.`
+    id: "Vorwort",
+    title: "Vorwort",
+    body: `Im Folgenden einiges Wissenswertes über die Welt von Ionoï, seine Bewohner und das Ganze drumherum, den Magier unter Einsatz ihrer Gesundheit (und mitunter auch ihres Lebens) dem berühmt berüchtigten Buch namens Schafsdrücker entreißen konnten.`
   },
   {
     id: "aller-anfang",
